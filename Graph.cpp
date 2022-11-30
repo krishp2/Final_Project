@@ -54,25 +54,29 @@ void Graph::insertEdge(string k){
 
 void Graph::readVertex(){
     string temp;
-    for(int i = 0 ; i< 262111; i++){
+    for(int i = 0 ; i< 250; i++){
         temp = std::to_string(i);
         insertVertex(temp);
     }
 }
-/*
+
 void Graph::makeAdj(){
     int j;
-    for(int i =0 ; i< edges.size(); i++){
-        adj[i].push_back(edges[i][0]);
+    list<string> temp;
+    for(int i =0 ; i < 262111; i++){
+        temp.push_back(edges[i][0]);
         j = i;
-        while(edges[i][0] == edges[j][0]){
-            adj[i].push_back(edges[i][2]);
+        while(edges[i][0] == edges[j][0] && i < 262111){
+            temp.push_back(edges[i][2]);
             i++;
+            std::cout<< i << std::endl;
         }
        i--;
+        std::cout<< "help" << std::endl;
+       adj.push_back(temp);
     }
 }
-*/
+
 /*
 void Graph::makeAdj(){
     list< vector<string> >::iterator list_it;

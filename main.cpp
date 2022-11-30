@@ -21,8 +21,8 @@ int main(){
     //readVertex();
     Graph obj;
     obj.readEdge(d);
-    obj.print();
-    //obj.makeAdj();
+    //obj.print();
+    obj.makeAdj();
     
     
 
