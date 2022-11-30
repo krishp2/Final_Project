@@ -39,7 +39,7 @@ class Graph{
 
     private:
     vector<string> vertex;     //vector for the vertices
-    list<string> *adj;        //doubly linked list for the edges
+    vector<list<string> >adj;        //doubly linked list for the edges
     vector<vector<string> > edges;
     string data;
     vector<string> row;
