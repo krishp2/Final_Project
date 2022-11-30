@@ -11,8 +11,10 @@ using std::string;
 
 
 Graph::Graph(){
+
    // data = file_to_string("/Users/divyamarora/Desktop/Final_Project/amazon0302 (1).txt");
     //edges = readEdge(data);
+
 }
 
 
