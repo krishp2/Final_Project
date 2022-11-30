@@ -33,13 +33,13 @@ class Graph{
     */
     void readEdge(const string& data);
 
-    void makeAdj();
+    void makeAdj(const string& data);
 
     void print();
 
     private:
     vector<string> vertex;     //vector for the vertices
-    list<string> *adj;        //doubly linked list for the edges
+    vector<list<string> >adj;        //doubly linked list for the edges
     vector<vector<string> > edges;
     string data;
     vector<string> row;

@@ -9,31 +9,22 @@ using std::list;
 using std::vector;
 using std::string;
 
+
 Graph::Graph(){
+
    // data = file_to_string("/Users/divyamarora/Desktop/Final_Project/amazon0302 (1).txt");
     //edges = readEdge(data);
+
 }
 
 
 void Graph::print(){
-    
-    for(int i = 0 ; i < 20000; i++){
-        for(int j =0 ; j< 3; j++){
-        std::cout<< edges[i][j] << std::endl;}
+  
+    for(int i = 0 ; i < 250; i++){
+    std::cout<< adj[i].front() << adj[i].back() << std::endl;}
+   
 }
-    
-    
-    /*
-    list< vector<string> >::iterator list_it;
-    vector<string>::iterator vec_it;
-    for (list_it = edges.begin(); list_it != edges.end(); ++ list_it){
-     for (vec_it = list_it->begin(); vec_it != list_it->end(); ++ vec_it)
-     {
-          //do something with vec_it
-          //for example call member function of Class
-          std::cout<< (*vec_it) << std::endl;
-     } }*/
-}
+
 
 void Graph::insertVertex(string k){
     vertex.push_back(k);
@@ -54,44 +45,42 @@ void Graph::insertEdge(string k){
 
 void Graph::readVertex(){
     string temp;
-    for(int i = 0 ; i< 262111; i++){
+    for(int i = 0 ; i< 250; i++){
         temp = std::to_string(i);
         insertVertex(temp);
     }
 }
-/*
-void Graph::makeAdj(){
-    int j;
-    for(int i =0 ; i< edges.size(); i++){
-        adj[i].push_back(edges[i][0]);
-        j = i;
-        while(edges[i][0] == edges[j][0]){
-            adj[i].push_back(edges[i][2]);
-            i++;
+void Graph::makeAdj(const string& data){
+    string temp = "";
+    string t;
+    string adjtemp = "";
+    list<string> ab;
+    bool flag = false; 
+    for (unsigned i=0; i< data.size(); i++){
+        if (data[i]!='\t' && data[i]!='\n'){
+            t = t+ data[i];
         }
-       i--;
+        else if(data[i]== '\t'){
+            if(adjtemp != t){
+                adjtemp = t;
+                adj.push_back(ab);
+                ab.clear();
+                ab.push_back(t);
+                t = "";
+                
+            }
+            temp = t;
+            t = "";
+        }
+        else if(data[i]== '\n'){
+            ab.push_back(t);
+            ab.push_back(temp + "_" + t);
+            t="";
+            temp ="";
+        }
     }
 }
-*/
-/*
-void Graph::makeAdj(){
-    list< vector<string> >::iterator list_it;
-    list< vector<string> >::iterator temp;
-    temp = edges.begin();
-    int i = 0;
-    for (list_it = edges.begin(); list_it != edges.end(); list_it++)
-    {
-            adj[i].push_back(list_it[0]);
-            temp = list_it;
-            while(list_it[0] == temp[0]){
-                adj[i].push_back(list_it[2]);
-                list_it++;
-                i++;
-        }
-        list_it--;
-    }
-}
-*/
+
 void Graph::readEdge(const string& data){
     
     string temp = "";
