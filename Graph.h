@@ -1,3 +1,4 @@
+
 #pragma once
 #include <iostream>
 #include <string>
@@ -9,16 +10,38 @@ using std::string;
 
 class Graph{
     public:
-    void insertVertex(int k);
 
-    list<int> incident(int v);
+    Graph();
 
-    bool areAdjacent(int v1, int v2);
+    void insertVertex(string k);
 
-    void insertEdge(int v1, int v2, int key);
+    list<string> incident(string v);
+
+    bool areAdjacent(string v1, string v2);
+
+    void insertEdge(string k);
+
+    /* 
+    *
+    *
+    */
+    void readVertex();
+
+    /* 
+    *
+    *
+    */
+    void readEdge(const string& data);
+
+    void makeAdj(const string& data);
+
+    void print();
 
     private:
-    vector<int> vertex;     //vector for the vertices
-    list<int> adj;         //doubly linked list for the edges
-    list<vector<int> > edges;
+    vector<string> vertex;     //vector for the vertices
+    vector<list<string> >adj;        //doubly linked list for the edges
+    vector<vector<string> > edges;
+    string data;
+    vector<string> row;
 };
+
