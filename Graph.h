@@ -33,7 +33,7 @@ class Graph{
     */
     void readEdge(const string& data);
 
-    void makeAdj();
+    void makeAdj(const string& data);
 
     void print();
 
