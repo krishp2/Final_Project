@@ -7,7 +7,7 @@ using std::vector;
 using std::string;
 
 Graph::Graph(){
-    vector<list<string> > adj;
+    list<string> *adj;
     list<vector<string> > edges;
 }
 void Graph::insertVertex(int k){
