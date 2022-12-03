@@ -35,7 +35,13 @@ class Graph{
 
     void makeAdj(const string& data);
 
-    void print();
+    void printedge();
+
+    void printadj();
+
+    vector<vector<string> >  getEdges();
+
+    vector<list<string> > getAdj();
 
     private:
     vector<string> vertex;     //vector for the vertices
@@ -43,5 +49,6 @@ class Graph{
     vector<vector<string> > edges;
     string data;
     vector<string> row;
+    int vertex_c;
 };
 
