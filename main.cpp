@@ -10,6 +10,7 @@
 #include <signal.h>
 #include "file_read.h"
 #include "Graph.h"
+#include "test.h"
 using std::list;
 using std::vector;
 using std::string;
@@ -22,10 +23,11 @@ int main(){
     Graph obj;
     obj.readEdge(d);
    
-    obj.makeAdj(d);
-    obj.print();
-    
-    
+    //obj.makeAdj(d);
+    //obj.printadj();
+    //AdjcanceylistTest();
+    edgestest();
 
+    //obj.printedge();
     return 0;
 }
