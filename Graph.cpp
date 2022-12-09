@@ -5,38 +5,67 @@
 #include <vector>
 #include <list>
 #include "file_read.h"
+#include <fstream>
 using std::list;
 using std::vector;
 using std::string;
 
 
-Graph::Graph(){
+Graph::Graph(int v, const string& data){
+    vertex_c = v;
+    adj = new list<int>[v];
+    makeadj2(data);
+    //readEdge(data);
+    readVertex(data);
+}
+Graph::Graph(int v){
+    vertex_c = v;
+    adj = new list<int>[v];
+}
 
-   // data = file_to_string("/Users/divyamarora/Desktop/Final_Project/amazon0302 (1).txt");
-    //edges = readEdge(data);
-
+Graph::~Graph() { 
+    //if (adj != NULL){
+        //delete [] adj;
+       // adj = NULL; }
 }
 
 
 void Graph::printadj(){
-  
-    for(int i = 0 ; i < 26000; i++){
-    std::cout<<  adj[i].back()<< std::endl;}
-   
+    std::ofstream myfile;
+    myfile.open ("/workspaces/cs225/Final_Project/output/tpep");
+    list<int>::iterator i;
+    //std::cout<< vertex_c << std::endl;
+    //std::cout<< vertex.size() << std::endl;
+    for (int v = 0; v < vertex.size(); v++)
+    {
+       //std::cout << v << std::endl;
+       //myfile << v << " -> ";
+       std::cout << vertex[v] << " -> ";
+        for (i = adj[vertex[v]].begin(); i != adj[vertex[v]].end(); ++i){
+            std::cout<< ' ' << *i;
+            //myfile << ' ' << *i;
+        }
+            std::cout<< std::endl;
+            //myfile << std::endl;
+    }
+    myfile.close();
 }
 
 void Graph::printedge(){
-    std::cout<<  "edges" << std::endl;
+    std::ofstream myfile;
+   // myfile.open ("/workspaces/cs225/Final_Project/output/edges_output");
+    
+    
     for(int i= 0; i<vertex_c; i++){
-        
-        std::cout<< edges[i][0];
-        std::cout<< " -> ";
-        std::cout<< edges[i][1] << std::endl;
+        myfile << edges[i][0];
+        myfile <<  " -> ";
+        myfile <<  edges[i][1] << std::endl;
     
     }
+    myfile.close();
 }
 
-void Graph::insertVertex(string k){
+void Graph::insertVertex(int k){
     vertex.push_back(k);
 }
 
@@ -49,53 +78,95 @@ bool Graph::areAdjacent(string v1, string v2){
     return false;
 }
 
-void Graph::insertEdge(string k){
-    //edges.push_back(k);
+void Graph::insertEdge(int v, int w){
+    adj[v].push_back(w);
 }
 
-void Graph::readVertex(){
-    string temp;
-    for(int i = 0 ; i< 250; i++){
-        temp = std::to_string(i);
-        insertVertex(temp);
-    }
+Graph Graph::getTranspose()
+{
+    std::cout << "Reached line " << __LINE__ << std::endl;
+    //std::cout<< vertex_c <<std::endl;
+	Graph g(vertex_c);
+	for (int v = 0; v < vertex_c; v++)
+	{
+		// Recur for all the vertices adjacent to this vertex
+		list<int>::iterator i;
+		for (i = adj[v].begin(); i != adj[v].end(); ++i)
+            //std::cout << ' ' << *i;
+            //std::cout<< std::endl;
+			g.adj[*i].push_back(v);
+	}
+	return g;
 }
 
-void Graph::makeAdj(const string& data){
-    string temp = "";
+
+void Graph::makeadj2(const string& data){
     string t;
     string first;
     string adjtemp = "";
-    list<string> ab;
-     for (int i=0; i<= data.size() ; i++){
-        if (data[i] == '\t'){
-           break;
-        }
-        first = first+ data[i];
-        
-     }
-     std::cout<< first << std::endl;
-     ab.push_back(t);
-     adjtemp = first;
-     temp = adjtemp;
+    list<int> ab;
+    //pushes the first vertex in the list;
     for (int i=0; i<= data.size() ; i++){
+        if (data[i] == '\t'){
+           break;}
+        first = first+ data[i];
+     }
+
+    adjtemp = first;
+    
+    for (int i=0; i< data.size() ; i++){
+
         if (data[i]!='\t' && data[i]!='\n'){
             t = t+ data[i];
         }
         else if(data[i]== '\t' ){
             if(adjtemp != t){
-                adj.push_back(ab);
-                ab.clear();
-                ab.push_back(t);
                 adjtemp = t;
-                temp = t;
             }
             t = "";
         }
         else if(data[i]== '\n'){
-            //ab.push_back(t);
-            ab.push_back(temp + "_" + t);
+            int verint = stoi(adjtemp);
+            int edgeint = stoi(t);
+    
+            insertEdge(verint, edgeint);
+    
             t="";
+        }
+
+    }
+}
+
+
+void Graph::readVertex(const string& data){
+    string t = "";
+    //vertex_c = 0;
+    string first;
+    string adjtemp = "";
+
+    for (int i=0; i<= data.size() ; i++){
+        if (data[i] == '\t'){
+           break;}
+        first = first+ data[i];
+     }
+
+    adjtemp = first;
+    int verint = stoi(adjtemp);
+    vertex.push_back(verint);
+    for (int i=0; i< data.size(); i++){
+        if (data[i]!='\t' && data[i]!='\n'){
+            t = t+ data[i];
+        }
+        else if(data[i]== '\t'){
+            if(adjtemp != t){
+            verint = stoi(t);
+            vertex.push_back(verint);
+            adjtemp = t;
+            }
+            t = "";
+        }
+        if(data[i] == '\n'){
+            t = "";
         }
     }
 }
@@ -104,7 +175,6 @@ void Graph::readEdge(const string& data){
     
     string temp = "";
     string t = "";
-    vertex_c = 0;
     for (int i=0; i< data.size(); i++){
         if (data[i]!='\t' && data[i]!='\n'){
             //std::cout << i ;
@@ -116,7 +186,6 @@ void Graph::readEdge(const string& data){
             row.push_back(t);
             temp = t;
             t = "";
-            vertex_c++;
         }
         else if(data[i]== '\n'){
      
@@ -137,6 +206,11 @@ vector<vector<string> >  Graph::getEdges(){
     return edges;
 }
 
-vector<list<string> > Graph::getAdj(){
+list<int>* Graph::getAdj(){
     return adj;
+}
+
+
+vector<int>  Graph::getvertex(){
+    return vertex;
 }
