@@ -29,7 +29,6 @@ TEST_CASE("Adjcancey list", "[weight=2][part=1]") {
 */
 void AdjcanceylistTest(){
     Graph test;
-    //vector<vector<string> >  getEdges();
     vector<list<string> > a;
     list<string> suba;
     suba.push_back("0");
@@ -38,11 +37,12 @@ void AdjcanceylistTest(){
     test.makeAdj(d);
     a = test.getAdj();
     std::cout<< d << std::endl;
-
+    //std::cout << a[0].begin();
     for (auto it = a[0].cbegin(); it != a[0].cend(); it++){
     std::cout << ' ' << *it;
     std::cout << "->";
     }
+    std::cout << "end";
 
   std::cout << '\n';
     //a[0]
@@ -65,3 +65,20 @@ void edgestest(){
     test.printedge();
     
 }
+/*
+void testscc(){
+	Graph g1(5);
+	g1.addEdge(0, 1);
+	g1.addEdge(1, 2);
+	g1.addEdge(2, 3);
+	g1.addEdge(3, 0);
+	g1.addEdge(2, 4);
+	g1.addEdge(4, 2);
+	g1.isSC()? cout << "Yes\n" : cout << "No\n";
+
+	Graph g2(4);
+	g2.addEdge(0, 1);
+	g2.addEdge(1, 2);
+	g2.addEdge(2, 3);
+	g2.isSC()? cout << "Yes\n" : cout << "No\n";
+}*/
