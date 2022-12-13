@@ -23,8 +23,8 @@ int main(){
     bool distanceb = false;
     bool pagerankb = false;
     int x;
-    string data = file_to_string("/workspaces/cs225/Final_Project/amazon0302 (1).txt");
-    Graph obj(data);
+    string amazondata = file_to_string("/workspaces/cs225/Final_Project/amazon0302 (1).txt");
+    Graph obj(amazondata);
     std::cout << "Graph created of " << obj.versize() << " Nodes." << std::endl;
     if(distanceb){
     std::cout << "Please input the vertex you want to find the distance to other vertices" << std::endl;
@@ -43,8 +43,8 @@ int main(){
     std::cout << "page rank is printed in the Product importance file" << std::endl;
     }
     if(sccb){
-    string data2 = file_to_string("/workspaces/cs225/Final_Project/test_data.txt");
-    Graph obj2(data2);
+    string test_data = file_to_string("/workspaces/cs225/Final_Project/test_data.txt");
+    Graph obj2(test_data);
     printscc(obj2);
     std::cout << "SCC printed the Strongly connected component file" << std::endl;
     }
