@@ -5,7 +5,6 @@ using std::pair;
 #include "Graph.h"
 using std::string;
 
-
 /* Intput - the from which the distance is to be found.
 *         - Graph on which the nodes are
 *  Output - a vertor of distances.

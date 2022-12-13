@@ -44,6 +44,9 @@ Graph& Graph::operator=(const Graph& other)
 
 Graph::Graph(int v){
     vertex_c = v;
+    for( int i =0; i <vertex_c; i++){
+        vertex.push_back(i);
+    }
     adj = new list<int>[v];
 }
     

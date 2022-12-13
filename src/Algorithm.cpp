@@ -74,7 +74,6 @@ vector<vector<int> > scc(Graph o)
     visited[i]= false;
   }
  
-  
   for(int i = 0; i < V; i++)
   {
         if(visited[i] == false)

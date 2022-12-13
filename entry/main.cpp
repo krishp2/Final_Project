@@ -16,6 +16,7 @@ using std::vector;
 using std::string;
 
 int main(){
+
     bool adjprint = false;
     bool edgeprint = false;
     bool sccb = false;
