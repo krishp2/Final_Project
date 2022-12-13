@@ -49,10 +49,6 @@ void fillStack(bool visited[], int v, std::stack<int> & s, Graph& g )
     
     visited[v]= true; 
     list<int>::iterator i;
-    // if(adj[v].empty()){
-    //     s.push(v);
-    //     return;
-    // }
     list<int>* k = g.getAdj();
     for(i = k[v].begin(); i != k[v].end(); ++i)
     {
@@ -113,7 +109,6 @@ vector<pair<int, double> > pageRank(double n, Graph obj){
   vector<vector<int> > adjvect= obj.getadj2();
   vector<int> vertex;
   vertex = obj.getvertex();
-  //list<int>* adj = obj.getAdj();
   int vertex_c = vertex[vertex.size()-1] +1;
 
   double dampen= 0.85;

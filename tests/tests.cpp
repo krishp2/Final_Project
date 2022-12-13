@@ -18,9 +18,14 @@
 using std::pair;
 using std::list;
 
+const string test1path = "/workspaces/cs225/Final_Project/testpr1";
+const string test2path = "/workspaces/cs225/Final_Project/testpr2";
+const string test3path = "/workspaces/cs225/Final_Project/testpr3";
+const string testdatapath = "/workspaces/cs225/Final_Project/test_data.txt";
+const string amazondatapath = "/workspaces/cs225/Final_Project/amazon0302 (1).txt";
 
 TEST_CASE("Adjcancey list small", "[weight=2]") {
-    string data = file_to_string("/workspaces/cs225/Final_Project/testpr1");
+    string data = file_to_string(test1path);
     Graph t(data);
     list<int>* a;
     a = t.getAdj();
@@ -32,7 +37,7 @@ TEST_CASE("Adjcancey list small", "[weight=2]") {
 }
 
 TEST_CASE("Adjcancey list large", "[weight=2]") {
-    string data = file_to_string("/workspaces/cs225/Final_Project/test_data.txt");
+    string data = file_to_string(testdatapath);
     Graph t(data);
     list<int>* a;
     int test_large[5] = {63, 97, 99, 307, 430};
@@ -46,7 +51,7 @@ TEST_CASE("Adjcancey list large", "[weight=2]") {
 
 
 TEST_CASE("BFS small test", "[weight=2]") {
-    string data = file_to_string("/workspaces/cs225/Final_Project/testpr3");
+    string data = file_to_string(test3path);
     Graph t(data);
     vector<int> test_dis;
     test_dis = distance(4,t);
@@ -60,7 +65,7 @@ TEST_CASE("BFS small test", "[weight=2]") {
 
 
 TEST_CASE("BFS on cycle", "[weight=1]") {
-    string data = file_to_string("/workspaces/cs225/Final_Project/testpr2");
+    string data = file_to_string(test2path);
     Graph t(data);
     vector<int> test_dis;
     test_dis = distance(0,t);
@@ -71,7 +76,7 @@ TEST_CASE("BFS on cycle", "[weight=1]") {
 }
 
 TEST_CASE("BFS no path test", "[weight=2]") {
-    string data = file_to_string("/workspaces/cs225/Final_Project/testpr3");
+    string data = file_to_string(test3path);
     Graph t(data);
     vector<int> test_dis;
     test_dis = distance(2,t);
@@ -85,7 +90,7 @@ TEST_CASE("BFS no path test", "[weight=2]") {
 
 
 TEST_CASE("BFS big data test", "[weight=2]") {
-    string data = file_to_string("/workspaces/cs225/Final_Project/amazon0302 (1).txt");
+    string data = file_to_string(amazondatapath);
     Graph t(data);
     vector<int> test_dis;
     test_dis = distance(8,t);
@@ -93,27 +98,9 @@ TEST_CASE("BFS big data test", "[weight=2]") {
     REQUIRE( test_dis[38]  == 4 );
     REQUIRE( test_dis[87]  == 15 );
 }
-/*
-void testscc(){
-	Graph g1(5);
-	g1.addEdge(0, 1);
-	g1.addEdge(1, 2);
-	g1.addEdge(2, 3);
-	g1.addEdge(3, 0);
-	g1.addEdge(2, 4);
-	g1.addEdge(4, 2);
-	g1.isSC()? cout << "Yes\n" : cout << "No\n";
-
-	Graph g2(4);
-	g2.addEdge(0, 1);
-	g2.addEdge(1, 2);
-	g2.addEdge(2, 3);
-	g2.isSC()? cout << "Yes\n" : cout << "No\n";
-}*/
-
 
 TEST_CASE("PageRank works with simple data and small n") {
-    string d = file_to_string("/workspaces/cs225/Final_Project/testpr1");
+    string d = file_to_string(test1path);
     Graph obj(d);
     vector<pair<int, double> > finalrank = pageRank(4, obj);
     REQUIRE((int)((finalrank[0].second * 100000)/10) == 3598);
@@ -124,7 +111,7 @@ TEST_CASE("PageRank works with simple data and small n") {
 
 TEST_CASE("PageRank works with simple data and large n") {
     
-    string d = file_to_string("/workspaces/cs225/Final_Project/testpr1");
+    string d = file_to_string(test1path);
     Graph obj(d);
     vector<pair<int, double> > finalrank = pageRank(100, obj);
     REQUIRE((int)((finalrank[0].second * 100000)/10) == 4797);
@@ -134,7 +121,7 @@ TEST_CASE("PageRank works with simple data and large n") {
 }
 
 TEST_CASE("PageRank works with cycles in the graph") {
-       string d = file_to_string("/workspaces/cs225/Final_Project/testpr2");
+       string d = file_to_string(test2path);
     Graph obj(d);
     vector<pair<int, double> > finalrank = pageRank(4, obj);
     REQUIRE((int)((finalrank[0].second * 100000)/10) == 3333);
@@ -144,7 +131,7 @@ TEST_CASE("PageRank works with cycles in the graph") {
 
 TEST_CASE("PageRank works with complex data and small n") {
     
-    string d = file_to_string("/workspaces/cs225/Final_Project/testpr3");
+    string d = file_to_string(test3path);
     Graph obj(d);
     vector<pair<int, double> > finalrank = pageRank(3, obj);
     REQUIRE((int)((finalrank[0].second * 100000)/10) == 2818);
@@ -156,7 +143,7 @@ TEST_CASE("PageRank works with complex data and small n") {
 
 TEST_CASE("PageRank works with complex data and large n") {
     
-    string d = file_to_string("/workspaces/cs225/Final_Project/testpr3");
+    string d = file_to_string(test3path);
     Graph obj(d);
     vector<pair<int, double> > finalrank = pageRank(100, obj);
     REQUIRE((int)((finalrank[0].second * 100000)/10) == 3170);
@@ -215,7 +202,7 @@ TEST_CASE("Strongly Connected Component on complex multiple cycles") {
 }
 
 TEST_CASE("Strongly Connected Component on compplex large data") {
-    string data = file_to_string("/workspaces/cs225/Final_Project/test_data.txt");
+    string data = file_to_string(testdatapath);
     Graph obj(data);
     vector<vector<int> > ssc;
     ssc = scc(obj);
