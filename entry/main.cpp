@@ -14,32 +14,43 @@
 using std::list;
 using std::vector;
 using std::string;
-int x = 9;
 
 int main(){
-    
-    string d = file_to_string("/workspaces/cs225/Final_Project/testpr3");
-    //std::cout<< d;
-    //readVertex();
-    Graph obj(d);
-    distance(4,obj);
-    //obj.readEdge(d);
-    //obj.makeadj2(d);
-    //obj.readVertex(d);
-    //obj.makeAdj(d);
-    //Graph(3);
-    //obj.printadj();
-    //obj.getTranspose();
-    //BFSUtil(0);
-    //bool check;
-    //printssc(obj);
-    //scc(obj);
-    //std::cout << check << std::endl;
-    std::cout << "Reached line " << __LINE__ << std::endl;
-    //obj.printadj();
-    //AdjcanceylistTest();
-    //edgestest();
-    //obj.printedge();
+    bool adjprint = false;
+    bool edgeprint = false;
+    bool sccb = false;
+    bool distanceb = false;
+    bool pagerankb = false;
+    int x;
+    string data = file_to_string("/workspaces/cs225/Final_Project/amazon0302 (1).txt");
+    Graph obj(data);
+    std::cout << "Graph created of " << obj.versize() << " Nodes." << std::endl;
+    if(distanceb){
+    std::cout << "Please input the vertex you want to find the distance to other vertices" << std::endl;
+    std::cin >> x;
+    while(x >= obj.versize()){
+        std::cout << "Input outside of vertex range. Please input again" << std::endl;
+        std::cin >> x;
+    }
+    distance(x,obj);
+    std::cout << "Distance is printed in the BFS_distance file" << std::endl;
+    }
+    if(pagerankb){
+    std::cout << "Input the number of iteration for pagerank" << std::endl;
+    std::cin >> x;
+    print_rank(pageRank(x,obj));
+    std::cout << "page rank is printed in the Product importance file" << std::endl;
+    }
+    if(sccb){
+    string data2 = file_to_string("/workspaces/cs225/Final_Project/test_data.txt");
+    Graph obj2(data2);
+    printscc(obj2);
+    std::cout << "SCC printed the Strongly connected component file" << std::endl;
+    }
+    if(adjprint){
+    obj.printadj();}
+    if(edgeprint){
+    obj.printedge();}
 
     return 0;
 
