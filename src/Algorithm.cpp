@@ -21,7 +21,7 @@ vector<int> distance(int v, Graph& obj1)
   int dist = 0;
   queue.push_back(v);
   std::ofstream myfile;
-  myfile.open ("/workspaces/cs225/Final_Project/output/tpep");
+  myfile.open ("/workspaces/cs225/Final_Project/output/BFS_distance");
   list<int>::iterator i;
   while (!queue.empty())
   {
@@ -35,7 +35,7 @@ vector<int> distance(int v, Graph& obj1)
           queue.push_back(*i);
       }
     }
-    myfile << v << " at level " << distance[v] <<'\n';
+    myfile << v << " at distance " << distance[v] <<'\n';
   }
   myfile.close();
   return distance;
@@ -74,7 +74,6 @@ vector<vector<int> > scc(Graph o)
     visited[i]= false;
   }
  
-  std::cout << "Reached line " << __LINE__ << std::endl;
   for(int i = 0; i < V; i++)
   {
         if(visited[i] == false)
@@ -166,7 +165,7 @@ vector<pair<int, double> > pageRank(double n, Graph obj){
 void print_rank(vector<pair<int, double> > frank ){
     std::sort(frank.begin(), frank.end(), [](const auto& a, const auto& b){return a.second > b.second;} );
     std::ofstream myfile;
-    myfile.open ("/workspaces/cs225/release-f22/Final_Project/Product_Rank");
+    myfile.open ("/workspaces/cs225/Final_Project/output/Product_Rank");
     for (unsigned int v = 0; v < frank.size(); v++)
     {
         myfile <<  v+1;
