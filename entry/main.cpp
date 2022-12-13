@@ -17,8 +17,7 @@ using std::string;
 int x = 9;
 
 int main(){
-    
-    string d = file_to_string("/workspaces/cs225/Final_Project/testpr3");
+
     //std::cout<< d;
     //readVertex();
     Graph obj(d);

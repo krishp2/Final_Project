@@ -165,3 +165,71 @@ TEST_CASE("PageRank works with complex data and large n") {
     REQUIRE((int)((finalrank[3].second * 100000)/10) == 3113);
     REQUIRE((int)((finalrank[4].second * 100000)/10) == 524);
 }
+
+TEST_CASE("Strongly Connected Component works with simple isolated vertices") {
+    Graph obj(7);
+    obj.insertEdge(0,1);
+    obj.insertEdge(1,2);
+    obj.insertEdge(2,3);
+    obj.insertEdge(3,4);
+    obj.insertEdge(4,5);
+    obj.insertEdge(5,6);
+    vector<vector<int> > ssc;
+    ssc = scc(obj);
+    REQUIRE(ssc[0][0] == 0);
+    REQUIRE(ssc[1][0] == 1);
+    REQUIRE(ssc[2][0] == 2);
+    REQUIRE(ssc[3][0] == 3);
+    REQUIRE(ssc[4][0] == 4);
+    REQUIRE(ssc[5][0] == 5);
+    REQUIRE(ssc[6][0] == 6);
+   
+}
+
+TEST_CASE("Strongly Connected Component on complex multiple cycles") {
+    Graph obj(9);
+    obj.insertEdge(0,1);
+    obj.insertEdge(1,2);
+    obj.insertEdge(2,3);
+    obj.insertEdge(2,4);
+    obj.insertEdge(3,0);
+    obj.insertEdge(4,5);
+    obj.insertEdge(5,6);
+    obj.insertEdge(6,4);
+    obj.insertEdge(7,6);
+    obj.insertEdge(7,8);
+    vector<vector<int> > ssc;
+    ssc = scc(obj);
+    int s[4] = {0,3,2,1};
+    int row[3] = {4,6,5};
+    REQUIRE(ssc[0][0] == 7);
+    REQUIRE(ssc[1][0] == 8);
+    for(unsigned int i =0; i<ssc[2].size(); i++ ){
+        REQUIRE(ssc[2][i]==s[i]);
+    }
+    
+    for(unsigned int i =0 ; i<ssc[3].size(); i++){
+        REQUIRE(ssc[3][i]==row[i]);
+    }
+   
+}
+
+TEST_CASE("Strongly Connected Component on compplex large data") {
+    string data = file_to_string("/workspaces/cs225/Final_Project/test_data.txt");
+    Graph obj(data);
+    vector<vector<int> > ssc;
+    ssc = scc(obj);
+    vector<int> scc_count;
+    int count = 1 ;
+    for(unsigned int i=0; i <ssc.size(); i++){
+        for(unsigned int j=0; j<ssc[i].size(); j++){
+            count++;
+        }
+        scc_count.push_back(count);
+        count =0;
+    }
+    REQUIRE(scc_count[0]==3);
+    REQUIRE(scc_count[1]==1);
+    REQUIRE(scc_count[3]==1000);
+   
+}

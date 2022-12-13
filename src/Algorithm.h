@@ -6,7 +6,7 @@ using std::pair;
 using std::string;
 
 //void BFSUtil(int v, vector<bool> visited, Graph obj1);
-bool isSC(Graph obj, const string& d);
+//bool isSC(Graph obj, const string& d);
 vector<int> distance(int v, Graph& obj1);
 vector<vector<int> >  scc(Graph o);
 vector<pair<int, double> > pageRank(double n, Graph obj);

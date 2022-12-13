@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsrc.a CMakeFiles/src.dir/Algorithm.cpp.o CMakeFiles/src.dir/Graph.cpp.o CMakeFiles/src.dir/file_read.cpp.o
+/usr/bin/ranlib libsrc.a
