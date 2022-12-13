@@ -228,8 +228,9 @@ TEST_CASE("Strongly Connected Component on compplex large data") {
         scc_count.push_back(count);
         count =0;
     }
-    REQUIRE(scc_count[0]==3);
-    REQUIRE(scc_count[1]==1);
-    REQUIRE(scc_count[3]==1000);
+
+    REQUIRE(scc_count[77915]==3);
+    REQUIRE(scc_count[77916]==1);
+    REQUIRE(scc_count[77917]==147166);
    
 }

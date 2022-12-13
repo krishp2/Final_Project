@@ -74,7 +74,6 @@ vector<vector<int> > scc(Graph o)
     visited[i]= false;
   }
  
-  std::cout << "Reached line " << __LINE__ << std::endl;
   for(int i = 0; i < V; i++)
   {
         if(visited[i] == false)

@@ -20,8 +20,8 @@ int main(){
 
     //std::cout<< d;
     //readVertex();
-    Graph obj(d);
-    distance(4,obj);
+    //Graph obj(d);
+    //distance(4,obj);
     //obj.readEdge(d);
     //obj.makeadj2(d);
     //obj.readVertex(d);
